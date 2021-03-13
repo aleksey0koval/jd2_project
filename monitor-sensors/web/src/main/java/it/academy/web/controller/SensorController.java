@@ -63,8 +63,8 @@ public class SensorController {
         modelSensor.setModelName(sensorDto.getModelNameDto());
 
         RangeSensor rangeSensor = new RangeSensor();
-        rangeSensor.setRangeFromSensor(Integer.parseInt(sensorDto.getRangeFromSensorDto()));
-        rangeSensor.setRangeToSensor(Integer.parseInt(sensorDto.getRangeToSensorDto()));
+        rangeSensor.setRangeFromSensor(sensorDto.getRangeFromSensorDto());
+        rangeSensor.setRangeToSensor(sensorDto.getRangeToSensorDto());
 
         UnitTypeSensor unitTypeSensor = new UnitTypeSensor();
         unitTypeSensor.setUnitName(sensorDto.getUnitNameDto());

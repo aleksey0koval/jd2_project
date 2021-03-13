@@ -39,8 +39,8 @@ public class SensorService {
     }
 
     @Transactional
-    public String saveSensor(Sensor sensor) {
-        return sensorDao.saveSensor(sensor);
+    public void saveSensor(Sensor sensor) {
+        sensorDao.saveSensor(sensor);
     }
 //
 //    @Transactional

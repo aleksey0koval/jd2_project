@@ -10,7 +10,7 @@ public interface SensorDao {
 
     Sensor readSensor(String id);
 
-    String saveSensor(Sensor sensor);
+    void saveSensor(Sensor sensor);
 
     void deleteSensor(Sensor sensor);
 

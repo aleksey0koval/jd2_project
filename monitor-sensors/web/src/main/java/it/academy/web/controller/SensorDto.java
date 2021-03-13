@@ -9,9 +9,9 @@ public class SensorDto {
 
     private String modelNameDto;
 
-    private String rangeFromSensorDto;
+    private Integer rangeFromSensorDto;
 
-    private String rangeToSensorDto;
+    private Integer rangeToSensorDto;
 
     private String typeNameDto;
 

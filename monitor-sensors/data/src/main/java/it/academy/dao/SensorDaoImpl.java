@@ -33,12 +33,11 @@ public class SensorDaoImpl implements SensorDao {
     }
 
     @Override
-    public String saveSensor(Sensor sensor) {
+    public void saveSensor(Sensor sensor) {
         Session session = sessionFactory
                 .getCurrentSession();
-        final Transaction transaction = session.beginTransaction();
-        String id = (String) session.save(sensor);
-        return id;
+        session.save(sensor);
+
     }
 
     @Override
