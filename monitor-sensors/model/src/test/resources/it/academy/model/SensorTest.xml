@@ -1,0 +1,37 @@
+<dataset>
+    <T_SENSORS
+            S_SENSOR_ID="1"
+            S_SENSOR_NAME="Sensor1"
+            S_SENSOR_MODEL="Model1"
+            S_RANGE_FROM="-50"
+            S_RANGE_TO="50"
+            S_SENSOR_DESCRIPTION="sensor bla bla bla"
+            S_SENSOR_LOCATION="Room1"/>
+
+    <T_SENSORS
+            S_SENSOR_ID="2"
+            S_SENSOR_NAME="Sensor2"
+            S_SENSOR_MODEL="Model2"
+            S_RANGE_FROM="-50"
+            S_RANGE_TO="50"
+            S_SENSOR_DESCRIPTION="sensor bla bla bla"
+            S_SENSOR_LOCATION="Room1"/>
+
+    <T_SENSORS
+            S_SENSOR_ID="3"
+            S_SENSOR_NAME="Sensor3"
+            S_SENSOR_MODEL="Model3"
+            S_RANGE_FROM="-50"
+            S_RANGE_TO="50"
+            S_SENSOR_DESCRIPTION="sensor bla bla bla"
+            S_SENSOR_LOCATION="Room1"/>
+
+    <T_SENSORS
+            S_SENSOR_ID="4"
+            S_SENSOR_NAME="Sensor4"
+            S_SENSOR_MODEL="Model4"
+            S_RANGE_FROM="-50"
+            S_RANGE_TO="50"
+            S_SENSOR_DESCRIPTION="sensor bla bla bla"
+</dataset>
+
