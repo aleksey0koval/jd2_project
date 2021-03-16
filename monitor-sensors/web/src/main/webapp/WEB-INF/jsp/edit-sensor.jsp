@@ -1,5 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
 <!DOCTYPE html>
@@ -117,16 +120,16 @@
 </head>
 <body>
 
-<p><big><big><big><h1 align="center">Add/Edit</h1></big></big></big></p>
-<form action="/web/user-sensor/add" method="post">
+<p><big><big><big><h1 align="center">Edit</h1></big></big></big></p>
+<form action="/web/edit/${sensorId}" method="post" modelAttribute="sensorDto">
     <div class="container">
         <label for="sensorName">Name*</label>
-        <input type="text" id="sensorName" name="sensorNameDto" placeholder="Name">
+        <input path="sensorName" minlength="3" maxlength="30" type="text" id="sensorName" name="sensorNameDto" placeholder=${sensor.sensorName} value="${sensor.sensorName}"/>
     </div>
 
     <div class="container">
         <label for="modelName">Model*</label>
-        <input type="text" id="modelName" name="modelNameDto" placeholder="Model">
+        <input path="modelName" minlength="3" maxlength="15" type="text" id="modelName" name="modelNameDto" value="${sensor.descriptionSensor.modelName}"/>
     </div>
 
     <div class="container">
@@ -134,42 +137,48 @@
         <table>
             <tr>
                 <th>
-                    <input type="number" id="rangeFromSensor" name="rangeFromSensorDto" placeholder="from">
+                    <input path="rangeFromSensor" type="number" id="rangeFromSensor" name="rangeFromSensorDto" value="${sensor.descriptionSensor.rangeFromSensor}"/>
                 </th>
                 <th>
-                    <input type="number" id="rangeToSensor" name="rangeToSensorDto" placeholder="to">
+                    <input path="rangeToSensor" type="number" id="rangeToSensor" name="rangeToSensorDto" value="${sensor.descriptionSensor.rangeToSensor}"/>
                 </th>
         </table>
     </div>
 
     <div class="container">
-        <label for="typeNameDto">Type*</label>
-        <select id="typeNameDto" name="typeNameDto">
-            <option value="1">Temperature</option>
-            <option value="2">Voltage</option>
-            <option value="3">Pressure</option>
-            <option value="4">Humidity</option>
+        <label for="typeName">Type*</label>
+        <select path="typeName" id="typeName" name="typeNameDto" value="${sensor.descriptionSensor.typeName}">
+            <option value="Temperature">Temperature</option>
+            <option value="Voltage">Voltage</option>
+            <option value=Pressure>Pressure</option>
+            <option value="Humidity">Humidity</option>
         </select>
     </div>
     <div class="container">
-        <label for="unitNameDto">Unit*</label>
-        <select id="unitNameDto" name="unitNameDto">
-            <c:forEach items="${unitList}" var="unitTypeSensors">
-                <option value="1">${unitTypeSensors.unitName}</option>
-            </c:forEach>
+        <label for="unitName">Unit*</label>
+        <select path="unitName" id="unitName" name="unitNameDto" value="${sensor.descriptionSensor.unitName}">
+            <option value=C>C</option>
+            <option value="voltage">voltage</option>
+            <option value="bar">bar</option>
+            <option value="%">%</option>
         </select>
     </div>
     <div class="container">
-        <label for="locationSensor">Location</label>
-        <input type="text" id="locationSensor" name="locationSensorDto" placeholder="location">
+        <label for="locationName">Location</label>
+        <input path="locationName" maxlength="40" type="text" id="locationName" name="locationSensorDto" value="${sensor.locationName}" />
     </div>
     <div class="container">
         <label for="descriptionSensor">Description</label>
-        <input type="text" id="descriptionSensor" name="descriptionSensorDto" placeholder="Enter description sensor" style="height:100px">
+        <input path="descriptionSensor" maxlength="200" type="text" id="descriptionSensor" name="descriptionSensorDto" value="${sensor.descriptionSensor.descriptionSensor}" style="height:100px"/>
 
     </div>
     <button class="btn save" type="submit" value="Save">Save</button>
-    <button class="btn cancel" type="submit" value="Cancel" align="right" href="/web">Cancel</button>
+
+</form>
+<form action="/web">
+    <div>
+        <button class="btn cancel" type="submit" value="Cancel" align="right" >Cancel</button>
+    </div>
 </form>
 
 </body>

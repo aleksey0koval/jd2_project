@@ -1,6 +1,7 @@
 package it.academy.model.user;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,9 +20,9 @@ public enum Role {
         return permissions;
     }
 
-    public Set<SimpleGrantedAuthority> getdAuthority() {
+    /*public Set<SimpleGrantedAuthority> getdAuthority() {
         return getPermissions().stream()
                 .map(permission -> new SimpleGrantedAuthority(permission.getPermisiion()))
                 .collect(Collectors.toSet());
-    }
+    }*/
 }

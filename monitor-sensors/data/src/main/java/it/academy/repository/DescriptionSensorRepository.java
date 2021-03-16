@@ -1,7 +1,10 @@
 package it.academy.repository;
 
 import it.academy.model.sensor.DescriptionSensor;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface DescriptionSensorRepository extends CrudRepository<DescriptionSensor, Integer> {
+@Repository
+public interface DescriptionSensorRepository
+        extends JpaRepository<DescriptionSensor, Integer> {
 }

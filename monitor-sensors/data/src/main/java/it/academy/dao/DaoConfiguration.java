@@ -48,9 +48,7 @@ public class DaoConfiguration {
                 = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource);
         sessionFactoryBean.setAnnotatedClasses(
-                Sensor.class, LocationSensor.class, DescriptionSensor.class,
-                ModelSensor.class, RangeSensor.class, TypeSensor.class, UnitTypeSensor.class
-        );
+                Sensor.class, DescriptionSensor.class, TypeSensor.class);
         Properties properties = new Properties();
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");

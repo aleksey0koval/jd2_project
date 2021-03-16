@@ -1,94 +1,81 @@
 package it.academy.web.controller;
 
-import it.academy.model.sensor.*;
+import it.academy.model.sensor.DescriptionSensor;
+import it.academy.model.sensor.Sensor;
 import it.academy.service.SensorService;
-
-import it.academy.service.TypeSensorService;
-import it.academy.service.UnitTypeSensorService;
+import it.academy.dto.SensorDto;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.logging.Logger;
 
 @Controller
 public class SensorController {
 
-    @Autowired
+    private final static Logger log = Logger.getLogger(SensorController.class.getName());
+
+    @Autowired(required = true)
+    @Qualifier(value = "sensorService")
     SensorService sensorService;
 
-//    @Autowired
-//    TypeSensorService typeSensorService;
-//
-//    @Autowired
-//    UnitTypeSensorService unitTypeSensorService;
-
     @GetMapping("/sensor")
-    public String sensor(Model model) {
+    public String listSensor(Model model
+                             // ,                             @PageableDefault(sort = {"id"})                                     Pageable pageable
+    ) {
         model.addAttribute("sensorList", sensorService.findAll());
         return "sensor";
     }
-//
-//    @GetMapping("/sensor/{id}")
-//    public String getSensor(
-//            @PathVariable(name = "id") String id,
-//            Model model
-//    ) {
-//        try {
-//            model.addAttribute("product", sensorService.findByIdSensor(id));
-//            return "product";
-//        } catch (Exception e) {
-//            model.addAttribute("error-message", "Product not found");
-//            return "error";
-//        }
-//    }
-
 
     @GetMapping("/add-sensor")
-    public String addSensor(Model model1, Model model2) {
-//        model.addAttribute("typeList", typeSensorService.findAllType());
-//        model.addAttribute("unitList",unitTypeSensorService.findAllUnit());
+    public String addSensor(Model model) {
+        //model.addAttribute("sensorList", sensorService.findAll());
         return "add-sensor";
     }
 
-    @PostMapping("/sensor/add")
-    public String addSensor(
-            @ModelAttribute ("sensorDto") SensorDto sensorDto
+    @PostMapping("/add")
+    public String addSensor(@ModelAttribute("sensorDto") @Valid SensorDto sensorDto,
+                            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "add-sensor";
+        }
+        sensorService.createSensor(sensorDto);
+        return "redirect:/";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editSensor(@PathVariable("id") String id,
+                             @ModelAttribute("sensorDto") @Valid SensorDto sensorDto,
+                             BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "edit-sensor";
+        }
+        sensorService.updateSensor(id, sensorDto);
+        return "redirect:/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteSensor(@PathVariable("id") String id) {
+        sensorService.deleteSensor(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editSensor(@PathVariable("id") String id,
+                             Model model, Model model1
     ) {
-        ModelSensor modelSensor = new ModelSensor();
-        modelSensor.setModelName(sensorDto.getModelNameDto());
 
-        RangeSensor rangeSensor = new RangeSensor();
-        rangeSensor.setRangeFromSensor(sensorDto.getRangeFromSensorDto());
-        rangeSensor.setRangeToSensor(sensorDto.getRangeToSensorDto());
-
-        UnitTypeSensor unitTypeSensor = new UnitTypeSensor();
-        unitTypeSensor.setUnitName(sensorDto.getUnitNameDto());
-
-        TypeSensor typeSensor = new TypeSensor();
-        typeSensor.setTypeName(sensorDto.getTypeNameDto());
-        typeSensor.setUnitTypeSensors(List.of(unitTypeSensor));
-
-        DescriptionSensor descriptionSensor = new DescriptionSensor();
-        descriptionSensor.setModelSensors(List.of(modelSensor));
-        descriptionSensor.setRangeSensors(List.of(rangeSensor));
-        descriptionSensor.setTypeSensors(List.of(typeSensor));
-
-        LocationSensor locationSensor = new LocationSensor();
-        locationSensor.setLocationName(sensorDto.getLocationSensorDto());
-
-        Sensor sensor = new Sensor();
-        sensor.setSensorName(sensorDto.getSensorNameDto());
-        sensor.setDescriptionSensor(descriptionSensor);
-        sensor.setLocationSensor(locationSensor);
-
-        sensorService.saveSensor(sensor);
-
-        return "redirect:/sensor";
+        model.addAttribute("sensor", sensorService.findSensorById(id));
+        model1.addAttribute("sensorId", id);
+        return "edit-sensor";
     }
 
 }

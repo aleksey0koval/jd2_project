@@ -1,8 +1,11 @@
 package it.academy.model.sensor;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -14,18 +17,21 @@ import javax.persistence.*;
 public class Sensor {
 
     @Id
-    @GeneratedValue(generator = "GENERATOR_SENSOR_ID")
+    @GeneratedValue(generator = "uuid-generator")
+    @GenericGenerator(name = "uuid-generator", strategy = "uuid")
     @Column(name = "S_SENSOR_ID")
-    private Integer sensorId;
+    private String sensorId;
 
-    @Column(name = "S_SENSOR_NAME", length = 200)
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
+    @Column(name = "S_SENSOR_NAME")
     private String sensorName;
 
-    @ManyToOne()
+    @Size(max = 40, message = "Location should be max 40 characters")
+    @Column(name = "S_LOCATION_NAME")
+    private String locationName;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "DESCRIPTION_ID")
     private DescriptionSensor descriptionSensor;
-
-    @OneToOne(mappedBy = "sensor")
-    @JoinColumn(name = "LOCATION_ID" )
-    private LocationSensor locationSensor;
 }

@@ -1,77 +1,67 @@
-<!--<?xml version="1.0" encoding="UTF-8" ?>-->
-<!--<databaseChangeLog-->
-<!--        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
-<!--        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-<!--        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-<!--    <changeSet id="1" author="Kovalchuk">-->
-<!--        <sql>-->
-<!--            create database if not exists project;-->
-<!--        </sql>-->
-<!--    </changeSet>-->
-<!--&lt;!&ndash;    <changeSet id="2" author="Kovalchuk">&ndash;&gt;-->
-<!--&lt;!&ndash;        <sql>&ndash;&gt;-->
-<!--&lt;!&ndash;            create table if not exists `t_type_sensor` (&ndash;&gt;-->
-<!--&lt;!&ndash;            `TS_TYPE_ID` int(11) NOT NULL,&ndash;&gt;-->
-<!--&lt;!&ndash;            `TS_TYPE_NAME` varchar(255) DEFAULT NULL,&ndash;&gt;-->
-<!--&lt;!&ndash;            `DESCRIPTION_ID` int(11) DEFAULT NULL,&ndash;&gt;-->
-<!--&lt;!&ndash;            PRIMARY KEY (`TS_TYPE_ID`),&ndash;&gt;-->
-<!--&lt;!&ndash;            KEY `FKihchbk1w9omnhial7s3u7i2yn` (`DESCRIPTION_ID`),&ndash;&gt;-->
-<!--&lt;!&ndash;            CONSTRAINT `FKihchbk1w9omnhial7s3u7i2yn` FOREIGN KEY (`DESCRIPTION_ID`) REFERENCES `t_description_sensor` (`D_DESCRIPTION_ID`)&ndash;&gt;-->
-<!--&lt;!&ndash;            ) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8;&ndash;&gt;-->
-<!--&lt;!&ndash;            );&ndash;&gt;-->
-<!--&lt;!&ndash;        </sql>&ndash;&gt;-->
-<!--&lt;!&ndash;    </changeSet>&ndash;&gt;-->
-<!--&lt;!&ndash;    <changeSet id="3" author="Kovalchuk">&ndash;&gt;-->
-<!--&lt;!&ndash;        <sql>&ndash;&gt;-->
-<!--&lt;!&ndash;            create table if not exists `t_unit_type` (&ndash;&gt;-->
-<!--&lt;!&ndash;            `U_UNIT_ID` varchar(255) NOT NULL,&ndash;&gt;-->
-<!--&lt;!&ndash;            `U_UNIT_NAME` varchar(255) DEFAULT NULL,&ndash;&gt;-->
-<!--&lt;!&ndash;            `TYPE_ID` int(11) DEFAULT NULL,&ndash;&gt;-->
-<!--&lt;!&ndash;            PRIMARY KEY (`U_UNIT_ID`),&ndash;&gt;-->
-<!--&lt;!&ndash;            KEY `FK5tu6lat88upcq7b96rhssccqx` (`TYPE_ID`),&ndash;&gt;-->
-<!--&lt;!&ndash;            CONSTRAINT `FK5tu6lat88upcq7b96rhssccqx` FOREIGN KEY (`TYPE_ID`) REFERENCES `t_type_sensor` (`TS_TYPE_ID`)&ndash;&gt;-->
-<!--&lt;!&ndash;            ) ENGINE=InnoDB DEFAULT CHARACTER SET = utf8;&ndash;&gt;-->
-<!--&lt;!&ndash;            );&ndash;&gt;-->
-<!--&lt;!&ndash;        </sql>&ndash;&gt;-->
-<!--&lt;!&ndash;    </changeSet>&ndash;&gt;-->
-<!--&lt;!&ndash;    <changeSet id="4" author="Kovalchuk">&ndash;&gt;-->
-<!--&lt;!&ndash;        <sql>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            insert into prod.receivers (id, receiver)&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            values (1, 'Solo');&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            insert into prod.receivers (id, receiver)&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            values (2, 'Korona');&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            insert into prod.receivers (id, receiver)&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            values (3, 'MTS');&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            insert into prod.expenses (id, paydate, receiver, sum)&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            values (1, '2021-01-10', 1, 25);&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            insert into prod.expenses (id, paydate, receiver, sum)&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            values (2, '2021-01-10', 2, 52);&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            insert into prod.expenses (id, paydate, receiver, sum)&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            values (3, '2021-01-11', 3, 20);&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            insert into prod.expenses (id, paydate, receiver, sum)&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            values (4, '2021-01-11', 4, 10);&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;        </sql>&ndash;&gt;-->
-<!--&lt;!&ndash;    </changeSet>&ndash;&gt;-->
+    <changeSet id="1" author="Kovalchuk">
+        <sql>
+            create database if not exists project;
+        </sql>
+    </changeSet>
 
-<!--</databaseChangeLog>-->
-<!--<plugin>-->
-<!--    <groupId>org.liquibase</groupId>-->
-<!--    <artifactId>liquibase-maven-plugin</artifactId>-->
-<!--    <version>3.5.3</version>-->
-<!--    <executions>-->
-<!--        <execution>-->
-<!--            <phase>process-resources</phase>-->
-<!--            <goals>-->
-<!--                <goal>update</goal>-->
-<!--            </goals>-->
-<!--            <configuration>-->
-<!--                <changeLogFile>src/main/resources/changelog-sensor.xml</changeLogFile>-->
-<!--                <driver>com.mysql.cj.jdbc.Driver</driver>-->
-<!--                <url>jdbc:mysql://localhost:3306/project?serverTimezone=UTC&amp;createDatabaseIfNotExist=true</url>-->
-<!--                <username>root</username>-->
-<!--                <password>root</password>-->
-<!--            </configuration>-->
-<!--        </execution>-->
-<!--    </executions>-->
-<!--</plugin>-->
+    <changeSet id="2" author="Kovalchuk">
+        <sql>
+            create table if not exists project.T_DESCRIPTION(
+            D_DESCRIPTION_ID varchar(50) not null primary key,
+            D_DESCRIPTION_SENSOR varchar(50),
+            D_MODEL_NAME varchar(50),
+            D_TYPE_NAME varchar(50),
+            D_RANGE_FROM int,
+            D_RANGE_TO int,
+            D_UNIT_NAME varchar(50)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="Kovalchuk">
+        <sql>
+            create table if not exists project.T_SENSOR(
+            S_SENSOR_ID varchar(50) not null primary key,
+            S_SENSOR_NAME varchar(50),
+            S_LOCATION_NAME varchar(500),
+            DESCRIPTION_ID varchar(50),
+            FOREIGN KEY (DESCRIPTION_ID) REFERENCES project.T_DESCRIPTION(D_DESCRIPTION_ID)
+            );
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="4" author="Kovalchuk">
+        <sql>
+            insert into project.T_DESCRIPTION(D_DESCRIPTION_ID, D_DESCRIPTION_SENSOR, D_MODEL_NAME, D_TYPE_NAME, D_RANGE_FROM, D_RANGE_TO, D_UNIT_NAME) values
+            ('2c931081773acfd101773acfd4180001', 'Description1','Model1', 'Temperature', 0, 100, 'C');
+            insert into project.T_DESCRIPTION(D_DESCRIPTION_ID, D_DESCRIPTION_SENSOR, D_MODEL_NAME, D_TYPE_NAME, D_RANGE_FROM, D_RANGE_TO, D_UNIT_NAME) values
+            ('2c931081773acfd101773acfd4180002','Description2', 'Model2', 'Voltage', 0, 500, 'Voltage');
+            insert into project.T_DESCRIPTION(D_DESCRIPTION_ID, D_DESCRIPTION_SENSOR, D_MODEL_NAME, D_TYPE_NAME, D_RANGE_FROM, D_RANGE_TO, D_UNIT_NAME) values
+            ('2c931081773acfd101773acfd4180003','Description3', 'Model3', 'Pressure', -50, 50, 'bar');
+            insert into project.T_DESCRIPTION(D_DESCRIPTION_ID, D_DESCRIPTION_SENSOR, D_MODEL_NAME, D_TYPE_NAME, D_RANGE_FROM, D_RANGE_TO, D_UNIT_NAME) values
+            ('2c931081773acfd101773acfd4180004','Description4', 'Model4', 'Humidity', 0, 100, '%');
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="5" author="Kovalchuk">
+        <sql>
+            insert into project.T_SENSOR(S_SENSOR_ID, S_SENSOR_NAME, S_LOCATION_NAME, DESCRIPTION_ID) values
+            ('4028e679773a593201773a59392d0001', 'Sensor1', 'Room1', '2c931081773acfd101773acfd4180001');
+            insert into project.T_SENSOR(S_SENSOR_ID, S_SENSOR_NAME, S_LOCATION_NAME, DESCRIPTION_ID) values
+            ('4028e679773a593201773a59392d0002','Sensor2', 'Room1', '2c931081773acfd101773acfd4180002');
+            insert into project.T_SENSOR(S_SENSOR_ID, S_SENSOR_NAME, S_LOCATION_NAME, DESCRIPTION_ID) values
+            ('4028e679773a593201773a59392d0003','Sensor3', 'Room1', '2c931081773acfd101773acfd4180003');
+            insert into project.T_SENSOR(S_SENSOR_ID, S_SENSOR_NAME, S_LOCATION_NAME, DESCRIPTION_ID) values
+            ('4028e679773a593201773a59392d0004','Sensor4', 'Room1', '2c931081773acfd101773acfd4180004');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

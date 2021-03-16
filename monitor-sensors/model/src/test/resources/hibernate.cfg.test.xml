@@ -14,10 +14,10 @@
 
         <mapping class="it.academy.model.sensor.Sensor"/>
         <mapping class="it.academy.model.sensor.DescriptionSensor"/>
-        <mapping class="it.academy.model.sensor.LocationSensor"/>
+        <!--<mapping class="it.academy.model.sensor.LocationSensor"/>
         <mapping class="it.academy.model.sensor.ModelSensor"/>
         <mapping class="it.academy.model.sensor.RangeSensor"/>
         <mapping class="it.academy.model.sensor.TypeSensor"/>
-        <mapping class="it.academy.model.sensor.UnitTypeSensor"/>
+        <mapping class="it.academy.model.sensor.UnitTypeSensor"/>-->
     </session-factory>
 </hibernate-configuration>

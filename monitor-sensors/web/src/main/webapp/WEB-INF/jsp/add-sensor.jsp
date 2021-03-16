@@ -1,7 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,16 +118,17 @@
 </head>
 <body>
 
-<p><big><big><big><h1 align="center">Add/Edit</h1></big></big></big></p>
-<form action="/web/sensor/add" method="post" modelAttribute="sensorDto">
+<p><big><big><big><h1 align="center">Add</h1></big></big></big></p>
+<form action="/web/add" method="post" modelAttribute="sensorDto">
     <div class="container">
         <label for="sensorName">Name*</label>
-        <input type="text" id="sensorName" name="sensorNameDto" placeholder="Name">
+        <input type="text" minlength="3" maxlength="30" id="sensorName" name="sensorNameDto" placeholder="Name">
+        <div c:if test="${fields.hasErrors('sensorNameDto')}" c:errors="${sensorNameDto}">Name error</div>
     </div>
 
     <div class="container">
         <label for="modelName">Model*</label>
-        <input type="text" id="modelName" name="modelNameDto" placeholder="Model">
+        <input type="text" minlength="3" maxlength="15" id="modelName" name="modelNameDto" placeholder="Model">
     </div>
 
     <div class="container">
@@ -143,34 +145,39 @@
     </div>
 
     <div class="container">
-        <label for="typeNameDto">Type*</label>
-        <select id="typeNameDto" name="typeNameDto">
-            <option value="1">Temperature</option>
-            <option value="2">Voltage</option>
-            <option value="3">Pressure</option>
-            <option value="4">Humidity</option>
+        <label for="typeName">Type*</label>
+        <select id="typeName" name="typeNameDto">
+            <option value="Temperature">Temperature</option>
+            <option value="Voltage">Voltage</option>
+            <option value=Pressure>Pressure</option>
+            <option value="Humidity">Humidity</option>
         </select>
     </div>
     <div class="container">
-        <label for="unitNameDto">Unit*</label>
-        <select id="unitNameDto" name="unitNameDto">
-            <option value="1">&#8451;</option>
-            <option value="2">voltage</option>
-            <option value="3">bar</option>
-            <option value="4">&#8240;</option>
+        <label for="unitName">Unit*</label>
+        <select id="unitName" name="unitNameDto">
+            <option value=C>C</option>
+            <option value="voltage">voltage</option>
+            <option value="bar">bar</option>
+            <option value="%">%</option>
         </select>
     </div>
     <div class="container">
-        <label for="locationSensor">Location</label>
-        <input type="text" id="locationSensor" name="locationSensorDto" placeholder="location">
+        <label for="locationName">Location</label>
+        <input type="text" maxlength="40" id="locationName" name="locationSensorDto" placeholder="location">
     </div>
     <div class="container">
         <label for="descriptionSensor">Description</label>
-        <input type="text" id="descriptionSensor" name="descriptionSensorDto" placeholder="Enter description sensor" style="height:100px">
+        <input type="text" id="descriptionSensor" maxlength="200" name="descriptionSensorDto" placeholder="Enter description sensor" style="height:100px">
 
     </div>
     <button class="btn save" type="submit" value="Save">Save</button>
-    <button class="btn cancel" type="submit" value="Cancel" align="right" href="/web">Cancel</button>
+
+</form>
+<form action="/web">
+    <div>
+        <button class="btn cancel" type="submit" value="Cancel" align="right" >Cancel</button>
+    </div>
 </form>
 
 </body>

@@ -3,6 +3,7 @@ package it.academy.model.sensor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,19 +16,19 @@ import java.util.List;
 public class TypeSensor {
 
     @Id
-    @GeneratedValue(generator = "GENERATOR_TYPE_ID")
+    @GeneratedValue(generator = "uuid-generator")
+    @GenericGenerator(name = "uuid-generator", strategy = "uuid")
     @Column(name = "TS_TYPE_ID")
-    private Integer typeId;
+    private String typeId;
 
     @Column(name = "TS_TYPE_NAME")
     private String typeName;
 
-    @OneToMany(mappedBy = "typeSensor")
-    private List<UnitTypeSensor> unitTypeSensors;
+    @Column(name = "TS_UNIT_NAME")
+    private String unitName;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "DESCRIPTION_ID")
     private DescriptionSensor descriptionSensor;
-
 }
 

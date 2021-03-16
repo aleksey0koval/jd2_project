@@ -3,48 +3,29 @@ package it.academy.model.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 
-
+@Entity
+@Data
+@Table(name = "T_USER")
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
+    @Id
+    @GeneratedValue(generator = "uuid-generator")
+    @GenericGenerator(name = "uuid-generator", strategy = "uuid")
+    @Column(name = "U_USER_ID")
+    private String userId;
+    @Column(name = "U_USERNAME")
+    private String username;
+    @Column(name = "U_PASSWORD")
+    private String password;
+    @Column(name = "U_ENABLED")
+    private boolean enabled;
 
-    private String name;
-    private String surname;
-    private String email;
 
-    public User() {
-    }
-
-    public User(String name, String surname, String email) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

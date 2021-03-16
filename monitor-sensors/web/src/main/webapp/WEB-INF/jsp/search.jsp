@@ -196,7 +196,6 @@
 
 
 <form  action="/web/search">
-
     <input name="searchParam" type="search" placeholder="enter text to search" aria-label="Search">
     <button class="fa fa-search" type="submit">Search</button>
 </form>
@@ -219,7 +218,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${sensorList}" var="sensorItem">
+    <c:forEach items="${searchResult}" var="sensorItem">
         <tr>
             <security:authorize access="hasRole('ADMIN')">
                 <td>
@@ -254,17 +253,13 @@
 </table>
 
 <security:authorize access="hasRole('ADMIN')">
-    <form action="/web/add-sensor">
+    <form action="/web">
         <div>
-            <button class="btn add" >Add sensor</button>
+            <button class="btn add" >All sensors</button>
         </div>
     </form>
 </security:authorize>
-
-
-
-
-
+</form>
 </body>
 </html>
 
