@@ -179,6 +179,21 @@
             color: white;
         }
 
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+        .pagination a.active {
+            background-color: dodgerblue;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+
 
     </style>
 </head>
@@ -193,7 +208,18 @@
 </security:authorize>
 <p><big><big><big><h1 align="center">Sensor table</h1></big></big></big></p>
 
-
+<form>
+    <div class="pagination">
+        <a href="#">«</a>
+        <a href="#">1</a>
+        <a class="active" href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">»</a>
+    </div>
+</form>
 
 <form  action="/web/search">
 
@@ -258,12 +284,10 @@
         <div>
             <button class="btn add" >Add sensor</button>
         </div>
+
+
     </form>
 </security:authorize>
-
-
-
-
 
 </body>
 </html>

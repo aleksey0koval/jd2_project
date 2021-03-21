@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -179,79 +179,94 @@
             color: white;
         }
 
-        .pagination a {
-            color: black;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: none;
-            transition: background-color .3s;
-        }
-
-        .pagination a.active {
-            background-color: dodgerblue;
-            color: white;
-        }
-
-        .pagination a:hover:not(.active) {background-color: #ddd;}
-
 
     </style>
 </head>
 <body>
 
 <security:authorize access="isAuthenticated()">
-<form method="post" action="${pageContext.request.contextPath}/logout">
-    <div>
-        <button class="btn logout" >logout</button>
-    </div>
-</form>
+    <form method="post" action="${pageContext.request.contextPath}/logout">
+        <div>
+            <button class="btn logout" >logout</button>
+        </div>
+    </form>
 </security:authorize>
 <p><big><big><big><h1 align="center">Sensor table</h1></big></big></big></p>
 
-<form>
-<div>
-    <ul class="pagination">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Pages</a>
-        </li>
-        <c:forEach items="${listSize}" var="pageItem">
-            <c:choose>
-                <c:when test="${(pageItem-1) == page}">
-                    <li class="page-item active">
-                        <a class="page-link" href="#" tabindex="-1">${pageItem}</a>
-                    </li>
-                </c:when>
-                <c:when test="${pageItem == -1}">
-                    <li class="page-item active">
-                        <a class="page-link" href="#" tabindex="-1">...</a>
-                    </li>
-                </c:when>
-                <c:otherwise>
-                    <li class="page-item">
-                        <a class="page-link" href="${url}?page=${pageItem-1}&size=${size}" tabindex="-1">${pageItem}</a>
-                    </li>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
 
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Elements</a>
-        </li>
-        <c:forEach items="${[4, 8, 12, 16]}" var="pageSize">
-            <c:choose>
-                <c:when test="${pageSize == size}">
-                    <li class="page-item active">
-                        <a class="page-link" href="#">${pageSize}</a>
-                    </li>
-                </c:when>
-                <c:otherwise>
-                    <li class="page-item">
-                        <a class="page-link" href="${url}?page=${page}&size=${pageSize}" tabindex="-1">${pageSize}</a>
-                    </li>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
 
-    </ul>
-</div>
+<form  action="/web/search">
+
+    <input name="searchParam" type="search" placeholder="enter text to search" aria-label="Search">
+    <button class="fa fa-search" type="submit">Search</button>
 </form>
+
+<table id="customers" align="center">
+    <thead>
+    <tr>
+        <security:authorize access="hasRole('ADMIN')">
+            <th></th>
+        </security:authorize>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Type</th>
+        <th>Range</th>
+        <th>Unit</th>
+        <th>Location</th>
+        <security:authorize access="hasRole('ADMIN')">
+            <th></th>
+        </security:authorize>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${sensorList}" var="sensorItem">
+        <tr>
+            <security:authorize access="hasRole('ADMIN')">
+                <td>
+                    <form action="edit/${sensorItem.sensorId}">
+                        <div>
+                            <button class="btn edit" >Edit</button>
+                        </div>
+                    </form>
+                </td>
+            </security:authorize>
+
+            <td><a title=${sensorItem.descriptionSensor.descriptionSensor}>${sensorItem.sensorName}</a></td>
+            <td>${sensorItem.descriptionSensor.modelName}</td>
+            <td>${sensorItem.descriptionSensor.typeName}</td>
+            <td>${sensorItem.descriptionSensor.rangeFromSensor} - ${sensorItem.descriptionSensor.rangeToSensor}</td>
+            <td>${sensorItem.descriptionSensor.unitName}</td>
+            <td>${sensorItem.locationName}</td>
+            <security:authorize access="hasRole('ADMIN')">
+                <td>
+
+                    <form action="delete/${sensorItem.sensorId}">
+                        <div>
+                            <button class="btn delete" style="">Delete</button>
+                        </div>
+                    </form>
+                </td>
+            </security:authorize>
+        </tr>
+    </c:forEach>
+    </tbody>
+
+</table>
+
+<security:authorize access="hasRole('ADMIN')">
+    <form action="/web/add-sensor">
+        <div>
+            <button class="btn add" >Add sensor</button>
+        </div>
+    </form>
+</security:authorize>
+
+
+
+
+
+</body>
+</html>
+
+
+

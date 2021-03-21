@@ -2,11 +2,16 @@ package it.academy.web.controller;
 
 import it.academy.model.sensor.DescriptionSensor;
 import it.academy.model.sensor.Sensor;
+import it.academy.service.PageService;
 import it.academy.service.SensorService;
 import it.academy.dto.SensorDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Controller
@@ -27,13 +33,34 @@ public class SensorController {
     @Qualifier(value = "sensorService")
     SensorService sensorService;
 
+    @Autowired
+    PageService pageService;
+
+//    @GetMapping("/sensor")
+//    public String listSensor(Model model
+//    ) {
+////        List<Sensor> sensorList = sensorService.findAll();
+//
+////        model.addAttribute("page", 1);
+////        model.addAttribute("size", 4);
+////        model.addAttribute("listSize", sensorList.size());
+////        model.addAttribute("url", "/");
+//        model.addAttribute("sensorList", sensorService.findAll());
+//        return "sensor";
+//    }
+
     @GetMapping("/sensor")
-    public String listSensor(Model model
-                             // ,                             @PageableDefault(sort = {"id"})                                     Pageable pageable
-    ) {
+    public String listSensors(Model model    ) {
+//        List<Sensor> sensorList = sensorService.findAll();
+//
+//        model.addAttribute("page", page);
+//        model.addAttribute("size", size);
+//        model.addAttribute("listSize", sensorList.size());
+//        model.addAttribute("url", "/");
         model.addAttribute("sensorList", sensorService.findAll());
         return "sensor";
     }
+
 
     @GetMapping("/add-sensor")
     public String addSensor(Model model) {

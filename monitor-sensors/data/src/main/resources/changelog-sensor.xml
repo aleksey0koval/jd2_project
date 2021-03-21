@@ -42,7 +42,7 @@
             insert into project.T_DESCRIPTION(D_DESCRIPTION_ID, D_DESCRIPTION_SENSOR, D_MODEL_NAME, D_TYPE_NAME, D_RANGE_FROM, D_RANGE_TO, D_UNIT_NAME) values
             ('2c931081773acfd101773acfd4180001', 'Description1','Model1', 'Temperature', 0, 100, 'C');
             insert into project.T_DESCRIPTION(D_DESCRIPTION_ID, D_DESCRIPTION_SENSOR, D_MODEL_NAME, D_TYPE_NAME, D_RANGE_FROM, D_RANGE_TO, D_UNIT_NAME) values
-            ('2c931081773acfd101773acfd4180002','Description2', 'Model2', 'Voltage', 0, 500, 'Voltage');
+            ('2c931081773acfd101773acfd4180002','Description2', 'Model2', 'Voltage', 0, 500, 'voltage');
             insert into project.T_DESCRIPTION(D_DESCRIPTION_ID, D_DESCRIPTION_SENSOR, D_MODEL_NAME, D_TYPE_NAME, D_RANGE_FROM, D_RANGE_TO, D_UNIT_NAME) values
             ('2c931081773acfd101773acfd4180003','Description3', 'Model3', 'Pressure', -50, 50, 'bar');
             insert into project.T_DESCRIPTION(D_DESCRIPTION_ID, D_DESCRIPTION_SENSOR, D_MODEL_NAME, D_TYPE_NAME, D_RANGE_FROM, D_RANGE_TO, D_UNIT_NAME) values

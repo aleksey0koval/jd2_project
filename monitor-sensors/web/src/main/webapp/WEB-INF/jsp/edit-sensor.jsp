@@ -124,12 +124,12 @@
 <form action="/web/edit/${sensorId}" method="post" modelAttribute="sensorDto">
     <div class="container">
         <label for="sensorName">Name*</label>
-        <input path="sensorName" minlength="3" maxlength="30" type="text" id="sensorName" name="sensorNameDto" placeholder=${sensor.sensorName} value="${sensor.sensorName}"/>
+        <input required path="sensorName" minlength="3" maxlength="30" type="text" id="sensorName" name="sensorNameDto" placeholder=${sensor.sensorName} value="${sensor.sensorName}"/>
     </div>
 
     <div class="container">
         <label for="modelName">Model*</label>
-        <input path="modelName" minlength="3" maxlength="15" type="text" id="modelName" name="modelNameDto" value="${sensor.descriptionSensor.modelName}"/>
+        <input required path="modelName" minlength="3" maxlength="15" type="text" id="modelName" name="modelNameDto" value="${sensor.descriptionSensor.modelName}"/>
     </div>
 
     <div class="container">

@@ -1,9 +1,11 @@
-package it.academy.dao;
+package it.academy;
 
 import com.mysql.cj.jdbc.Driver;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import it.academy.model.sensor.*;
+import it.academy.model.sensor.DescriptionSensor;
+import it.academy.model.sensor.Sensor;
+import it.academy.model.sensor.TypeSensor;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +23,7 @@ import java.util.Properties;
 
 @PropertySource(value = "classpath:datasource.properties")
 @Configuration
-@ComponentScan("it.academy")
+@ComponentScan(basePackages = "it.academy")
 @EnableTransactionManagement
 public class DaoConfiguration {
 
@@ -63,5 +65,4 @@ public class DaoConfiguration {
             SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }
-
 }

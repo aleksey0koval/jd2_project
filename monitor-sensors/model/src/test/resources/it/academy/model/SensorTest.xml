@@ -1,37 +1,19 @@
 <dataset>
-    <T_SENSORS
-            S_SENSOR_ID="1"
+    <T_SENSOR
+            S_SENSOR_ID="2c931081773acfd101773acfd4181000"
             S_SENSOR_NAME="Sensor1"
-            S_SENSOR_MODEL="Model1"
-            S_RANGE_FROM="-50"
-            S_RANGE_TO="50"
-            S_SENSOR_DESCRIPTION="sensor bla bla bla"
-            S_SENSOR_LOCATION="Room1"/>
+            DESCRIPTION_ID="2c931081773acfd101773acfd4180001"/>
 
-    <T_SENSORS
-            S_SENSOR_ID="2"
-            S_SENSOR_NAME="Sensor2"
-            S_SENSOR_MODEL="Model2"
-            S_RANGE_FROM="-50"
-            S_RANGE_TO="50"
-            S_SENSOR_DESCRIPTION="sensor bla bla bla"
-            S_SENSOR_LOCATION="Room1"/>
 
-    <T_SENSORS
-            S_SENSOR_ID="3"
-            S_SENSOR_NAME="Sensor3"
-            S_SENSOR_MODEL="Model3"
-            S_RANGE_FROM="-50"
-            S_RANGE_TO="50"
-            S_SENSOR_DESCRIPTION="sensor bla bla bla"
-            S_SENSOR_LOCATION="Room1"/>
+    <T_DESCRIPTION
+            D_DESCRIPTION_ID="2c931081773acfd101773acfd4180001"
+            D_DESCRIPTION_SENSOR="Description1"
+            D_MODEL_NAME="Model1"
+            D_TYPE_NAME="Temperature"
+            D_RANGE_FROM="0"
+            D_RANGE_TO="100"
+            D_UNIT_NAME="C"/>
 
-    <T_SENSORS
-            S_SENSOR_ID="4"
-            S_SENSOR_NAME="Sensor4"
-            S_SENSOR_MODEL="Model4"
-            S_RANGE_FROM="-50"
-            S_RANGE_TO="50"
-            S_SENSOR_DESCRIPTION="sensor bla bla bla"
+
 </dataset>
 

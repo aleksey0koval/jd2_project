@@ -12,7 +12,7 @@ public class SensorDto {
     private String sensorNameDto;
 
     @NotEmpty(message = "Model should not be empty")
-    @Size(min = 2, max = 30, message = "Model should be between 2 and 15 characters")
+    @Size(min = 2, max = 15, message = "Model should be between 2 and 15 characters")
     private String modelNameDto;
 
     private Integer rangeFromSensorDto;
