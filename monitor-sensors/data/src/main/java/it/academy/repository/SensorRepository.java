@@ -9,7 +9,7 @@ public interface SensorRepository extends JpaRepository<Sensor, String> {
 
     Page<Sensor> findAll(Pageable pageable);
 
-    Page<Sensor> findBySensorName(String sensorName, Pageable pageable);
+//    Page<Sensor> findBySensorName(String sensorName, Pageable pageable);
 
 }
 

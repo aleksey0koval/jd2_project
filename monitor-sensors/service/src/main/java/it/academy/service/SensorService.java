@@ -7,6 +7,7 @@ import it.academy.model.sensor.Sensor;
 
 import it.academy.repository.SensorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,13 +16,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class SensorService {
-    //
 
     @Autowired
     SensorRepository sensorRepository;
 
-    @Transactional
     public void createSensor(SensorDto sensorDto){
         Sensor sensor = new Sensor();
         DescriptionSensor descriptionSensor = new DescriptionSensor();
@@ -41,7 +41,6 @@ public class SensorService {
         sensorRepository.save(sensor);
     }
 
-    @Transactional
     public void updateSensor(String id, SensorDto sensorDto){
 
         Sensor sensor = sensorRepository.findById(id).get();
@@ -63,18 +62,14 @@ public class SensorService {
         sensorRepository.save(sensor);
     }
 
-    @Transactional
     public void deleteSensor(String id){
         sensorRepository.deleteById(id);
     }
 
-    @Transactional
     public Sensor findSensorById(String id){
         return sensorRepository.findById(id).get();
     }
 
-
-    @Transactional
     public List<Sensor> findAll() {
         return sensorRepository.findAll();
     }

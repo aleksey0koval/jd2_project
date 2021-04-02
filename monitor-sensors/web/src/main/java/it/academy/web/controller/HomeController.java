@@ -23,14 +23,15 @@ public class HomeController {
     @Autowired
     SensorService sensorService;
 
-    @GetMapping("/")
-    public String home(
-
-            Model model) {
-
-        model.addAttribute("sensorList", sensorService.findAll());
-        return "sensor";
-    }
+//    @GetMapping("/")
+//    public String home(
+//
+//            Model model) {
+//
+//
+//        model.addAttribute("sensorList", sensorService.findAll());
+//        return "sensor";
+//    }
 
 //    @GetMapping("/sensor?page={page}&size={size}")
 //    public String home(

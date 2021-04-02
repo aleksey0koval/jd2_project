@@ -1,17 +1,12 @@
 package it.academy.web.controller;
 
-import it.academy.model.sensor.DescriptionSensor;
-import it.academy.model.sensor.Sensor;
-import it.academy.service.PageService;
-import it.academy.service.SensorService;
 import it.academy.dto.SensorDto;
-import jakarta.validation.Valid;
+import it.academy.model.sensor.Sensor;
+import it.academy.repository.SensorRepository;
+import it.academy.service.SensorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -29,14 +25,21 @@ public class SensorController {
 
     private final static Logger log = Logger.getLogger(SensorController.class.getName());
 
-    @Autowired(required = true)
-    @Qualifier(value = "sensorService")
-    SensorService sensorService;
+
+    private SensorService sensorService;
+
+    private SensorRepository sensorRepository;
+
+    public SensorController() {
+    }
 
     @Autowired
-    PageService pageService;
+    public SensorController(SensorService sensorService, SensorRepository sensorRepository) {
+        this.sensorService = sensorService;
+        this.sensorRepository = sensorRepository;
+    }
 
-//    @GetMapping("/sensor")
+    //    @GetMapping("/sensor")
 //    public String listSensor(Model model
 //    ) {
 ////        List<Sensor> sensorList = sensorService.findAll();
@@ -49,22 +52,32 @@ public class SensorController {
 //        return "sensor";
 //    }
 
-    @GetMapping("/sensor")
-    public String listSensors(Model model    ) {
-//        List<Sensor> sensorList = sensorService.findAll();
-//
-//        model.addAttribute("page", page);
-//        model.addAttribute("size", size);
-//        model.addAttribute("listSize", sensorList.size());
-//        model.addAttribute("url", "/");
-        model.addAttribute("sensorList", sensorService.findAll());
+    @GetMapping("/")
+    public String listSensors(Model model,
+//                              @PageableDefault(
+//                                      sort = {},
+//                                      direction = Sort.Direction.ASC)
+                              Pageable pageable
+    ) {
+
+        List<Sensor> sensorList = sensorService.findAll();
+        List<Integer> listSize = new ArrayList<>();
+        for (int i = 1; i <= sensorList.size(); i++) {
+            listSize.add(i);
+        }
+
+
+        //model.addAttribute("page", page);
+        model.addAttribute("url", "/");
+        model.addAttribute("listSize", listSize);
+        model.addAttribute("sensorList", sensorList);
         return "sensor";
     }
 
 
     @GetMapping("/add-sensor")
     public String addSensor(Model model) {
-        //model.addAttribute("sensorList", sensorService.findAll());
+        model.addAttribute("sensorList", sensorService.findAll());
         return "add-sensor";
     }
 

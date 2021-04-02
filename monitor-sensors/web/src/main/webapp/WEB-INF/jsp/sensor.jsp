@@ -197,7 +197,7 @@
 
     </style>
 </head>
-<body>
+<br>
 
 <security:authorize access="isAuthenticated()">
     <form method="post" action="${pageContext.request.contextPath}/logout">
@@ -207,6 +207,56 @@
     </form>
 </security:authorize>
 <p><big><big><big><h1 align="center">Sensor table</h1></big></big></big></p>
+
+<form>
+    <div>
+        <ul class="pagination">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Pages</a>
+            </li>
+            <c:forEach items="${listSize}" var="pageItem">
+                <c:choose>
+                    <c:when test="${(pageItem-1) == page.getNumber()}">
+                        <li class="page-item active">
+                            <a class="page-link" href="#" tabindex="-1">${pageItem}</a>
+                        </li>
+                    </c:when>
+                    <c:when test="${pageItem == -1}">
+                        <li class="page-item active">
+                            <a class="page-link" href="#" tabindex="-1">...</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item">
+                            <a class="page-link" href="${url}?page=${pageItem-1}&size=${page.getSize()}" tabindex="-1">${pageItem}</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Elements</a>
+            </li>
+            <c:forEach items="${[4, 8, 12, 16]}" var="pageSize">
+                <c:choose>
+                    <c:when test="${pageSize == size}">
+                        <li class="page-item active">
+                            <a class="page-link" href="#">${pageSize}</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item">
+                            <a class="page-link" href="${url}?page=${page}&size=${pageSize}" tabindex="-1">${pageSize}</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+        </ul>
+    </div>
+</form>
+
+
 
 <form>
     <div class="pagination">
@@ -220,6 +270,7 @@
         <a href="#">»</a>
     </div>
 </form>
+</br>
 
 <form  action="/web/search">
 
