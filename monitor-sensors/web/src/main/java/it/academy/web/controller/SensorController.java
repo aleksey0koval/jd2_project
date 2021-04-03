@@ -53,24 +53,24 @@ public class SensorController {
 //    }
 
     @GetMapping("/")
-    public String listSensors(Model model,
+    public String listSensors(Model model
 //                              @PageableDefault(
 //                                      sort = {},
 //                                      direction = Sort.Direction.ASC)
-                              Pageable pageable
+//                              Pageable pageable
     ) {
 
-        List<Sensor> sensorList = sensorService.findAll();
-        List<Integer> listSize = new ArrayList<>();
-        for (int i = 1; i <= sensorList.size(); i++) {
-            listSize.add(i);
-        }
+//        List<Sensor> sensorList = sensorService.findAll();
+//        List<Integer> listSize = new ArrayList<>();
+//        for (int i = 1; i <= sensorList.size(); i++) {
+//            listSize.add(i);
+//        }
 
 
         //model.addAttribute("page", page);
-        model.addAttribute("url", "/");
-        model.addAttribute("listSize", listSize);
-        model.addAttribute("sensorList", sensorList);
+//        model.addAttribute("url", "/");
+//        model.addAttribute("listSize", listSize);
+        model.addAttribute("sensorList", sensorService.findAll());
         return "sensor";
     }
 
