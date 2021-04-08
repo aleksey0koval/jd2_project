@@ -21,12 +21,9 @@ public class DescriptionSensor {
     @Column(name = "D_DESCRIPTION_ID")
     private String descriptionId;
 
-//    @Size(max = 200, message = "Description should be max 200 characters")
     @Column(name = "D_DESCRIPTION_SENSOR")
     private String descriptionSensor;
 
-//    @NotEmpty(message = "Model should not be empty")
-//    @Size(min = 2, max = 15, message = "Model should be between 2 and 15 characters")
     @Column(name = "D_MODEL_NAME")
     private String modelName;
 

@@ -17,7 +17,6 @@ public class WebProjectSecurityConfiguration
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                //.passwordEncoder(passwordEncoder())
                 .withUser("user")
                 .password("{noop}user").roles("USER")
                 .and()
@@ -30,7 +29,6 @@ public class WebProjectSecurityConfiguration
         http
                 .csrf().disable()
                 .authorizeRequests()
-                //.antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers(HttpMethod.GET, "/**").hasAnyRole("USER","ADMIN")
                 .and()
                 .httpBasic()

@@ -123,7 +123,6 @@
     <div class="container">
         <label for="sensorName">Name*</label>
         <input required type="text" minlength="3" maxlength="30" id="sensorName" name="sensorNameDto" placeholder="Name">
-<%--        --><div c:if test="${fields.hasErrors('sensorNameDto')}" c:errors="${sensorNameDto}">Name error</div>--%>
     </div>
 
     <div class="container">

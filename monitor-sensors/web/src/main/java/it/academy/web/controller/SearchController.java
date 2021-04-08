@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SearchController {
 
+    private final SearchService searchService;
+
     @Autowired
-    SearchService searchService;
+    public SearchController(SearchService searchService) {
+        this.searchService = searchService;
+    }
 
     @GetMapping("/search")
     public String search(@RequestParam(value = "searchParam", required = false) String param,
